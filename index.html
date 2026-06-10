@@ -228,20 +228,27 @@
       </div>
 
       <div class="result-block">
-        <h3>4. Other example — parking lot (extracted frame)</h3>
+        <h3>4. Graduation scene — multi-person detection</h3>
         <div class="result-meta">
           <span><strong>Input:</strong> input/test_video.mp4</span>
+          <span><strong>Output:</strong> output/detected_video.mp4</span>
           <span><strong>Script:</strong> detect_video.py</span>
+          <span><strong>Frame:</strong> ~00:03</span>
         </div>
         <div class="compare">
           <div class="compare-item">
-            <img src="assets/results/video-before.jpg" alt="Original parking lot video frame" loading="lazy">
-            <div class="compare-label">Before — frame #30</div>
+            <img src="assets/results/niuisters-before.jpg" alt="Original graduation video frame" loading="lazy">
+            <div class="compare-label">Before — test_video.mp4</div>
           </div>
           <div class="compare-item">
-            <img src="assets/results/video-frame-2.jpg" alt="Annotated parking lot frame" loading="lazy">
-            <div class="compare-label after">After — bounding boxes</div>
+            <img src="assets/results/niuisters-after.jpg" alt="Annotated graduation frame with bounding boxes" loading="lazy">
+            <div class="compare-label after">After — detected_video.mp4 (YOLO)</div>
           </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-pill">Persons detected: <span>6</span></div>
+          <div class="metric-pill">Max confidence: <span>92%</span></div>
+          <div class="metric-pill">Duration: <span>~10 s</span></div>
         </div>
       </div>
 
