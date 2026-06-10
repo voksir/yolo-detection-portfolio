@@ -1,0 +1,32 @@
+---
+import type { Dict } from "../i18n/types";
+import { sectionId } from "../utils/paths";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const { pipeline } = dict;
+---
+
+<section id={sectionId(dict.lang, "pipeline")} style="background: var(--bg-elevated);">
+  <div class="container">
+    <div class="section-header">
+      <h2>{pipeline.title}</h2>
+      <p>{pipeline.lead}</p>
+    </div>
+    <div class="pipeline">
+      {
+        pipeline.steps.map((step, index) => (
+          <>
+            {index > 0 && <div class="pipeline-arrow">→</div>}
+            <div class="pipeline-step">
+              {step.icon} {step.label}<br /><small>{step.sub}</small>
+            </div>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>

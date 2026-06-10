@@ -1,0 +1,26 @@
+---
+import { asset } from "../utils/assets";
+
+interface Props {
+  poster: string;
+  captions: { label: string; value: string }[];
+}
+
+const { poster, captions } = Astro.props;
+---
+
+<div class="video-showcase">
+  <video controls playsinline preload="metadata" poster={asset(`assets/results/${poster}.webp`)}>
+    <source src={asset("assets/videos/test_video_2_preview.mp4")} type="video/mp4" />
+    Your browser does not support video playback.
+  </video>
+  <div class="video-caption">
+    {
+      captions.map((caption) => (
+        <span>
+          <strong>{caption.label}:</strong> {caption.value}
+        </span>
+      ))
+    }
+  </div>
+</div>

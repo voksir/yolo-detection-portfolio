@@ -1,0 +1,42 @@
+---
+import type { ModelPageContent } from "../data/model-pages";
+import type { Dict } from "../i18n/types";
+import { fixContentLinks, resolveHashHref, sectionHref } from "../utils/paths";
+import Footer from "./Footer.astro";
+import Nav from "./Nav.astro";
+
+interface Props {
+  dict: Dict;
+  page: ModelPageContent;
+}
+
+const { dict, page } = Astro.props;
+const modelsHref = sectionHref(dict.lang, "models");
+const footerHref = resolveHashHref(dict.lang, page.footerLink.href);
+---
+
+<Nav dict={dict} showLinks={false} />
+
+<main id="main-content" class="container page-hero">
+  <a href={modelsHref} class="back-link">{dict.modelPage.backToModels}</a>
+  <span class="eyebrow">{page.eyebrow}</span>
+  <h1>{page.title}</h1>
+  <p class="hero-lead">{page.lead}</p>
+
+  <div class="content-prose">
+    {
+      page.sections.map((section) => (
+        <>
+          <h2>{section.heading}</h2>
+          <Fragment set:html={fixContentLinks(section.html, dict.lang)} />
+        </>
+      ))
+    }
+  </div>
+
+  <p style="margin-top: 2rem;">
+    <a href={footerHref} class="btn btn-primary">{page.footerLink.label}</a>
+  </p>
+</main>
+
+<Footer dict={dict} />

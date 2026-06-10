@@ -1,0 +1,90 @@
+---
+import type { Dict } from "../i18n/types";
+import { homePath, langSwitchUrls, sectionHref } from "../utils/paths";
+
+interface Props {
+  dict: Dict;
+  showLinks?: boolean;
+}
+
+const { dict, showLinks = true } = Astro.props;
+const langUrls = langSwitchUrls(Astro.url.pathname);
+const isFr = dict.lang === "fr";
+---
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href={homePath(dict.lang)} class="brand">YOLO <span>Portfolio</span></a>
+    <div class="nav-right">
+      {
+        showLinks && (
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label={dict.nav.menu}
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            ☰
+          </button>
+        )
+      }
+      {
+        showLinks ? (
+          <ul class="nav-links" id="nav-menu">
+            <li>
+              <a href={sectionHref(dict.lang, "about")}>{dict.nav.about}</a>
+            </li>
+            <li>
+              <a href={sectionHref(dict.lang, "pipeline")}>{dict.nav.pipeline}</a>
+            </li>
+            <li>
+              <a href={sectionHref(dict.lang, "results")}>{dict.nav.results}</a>
+            </li>
+            <li>
+              <a href={sectionHref(dict.lang, "models")}>{dict.nav.models}</a>
+            </li>
+            <li>
+              <a href={sectionHref(dict.lang, "stack")}>{dict.nav.stack}</a>
+            </li>
+            <li>
+              <a href="https://github.com/voksir/image-detection" target="_blank" rel="noopener">
+                {dict.nav.sourceCode}
+              </a>
+            </li>
+          </ul>
+        ) : null
+      }
+      <div class="lang-switch" aria-label="Language">
+        <a href={langUrls.en} class:list={[!isFr && "active"]} aria-current={!isFr ? "page" : undefined}>
+          EN
+        </a>
+        <span class="sep">|</span>
+        <a href={langUrls.fr} class:list={[isFr && "active"]} aria-current={isFr ? "page" : undefined}>
+          FR
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{
+  showLinks ? (
+    <script>
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.querySelector(".nav-links");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          const open = menu.classList.toggle("open");
+          toggle.setAttribute("aria-expanded", String(open));
+        });
+        menu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            menu.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+    </script>
+  ) : null
+}

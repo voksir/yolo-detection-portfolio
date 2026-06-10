@@ -1,0 +1,20 @@
+---
+import type { Dict } from "../i18n/types";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>{dict.footer.copyright}</span>
+    <span>
+      <a href="https://github.com/voksir/image-detection" target="_blank" rel="noopener">
+        {dict.footer.sourceCode}
+      </a>
+    </span>
+  </div>
+</footer>

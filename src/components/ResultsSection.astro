@@ -1,0 +1,21 @@
+---
+import type { Dict } from "../i18n/types";
+import { sectionId } from "../utils/paths";
+import ResultBlock from "./ResultBlock.astro";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+---
+
+<section id={sectionId(dict.lang, "results")}>
+  <div class="container">
+    <div class="section-header">
+      <h2>{dict.results.title}</h2>
+      <p>{dict.results.lead}</p>
+    </div>
+    {dict.results.demos.map((demo) => <ResultBlock dict={dict} demo={demo} />)}
+  </div>
+</section>

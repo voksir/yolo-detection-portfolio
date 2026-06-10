@@ -1,0 +1,54 @@
+---
+import type { Dict } from "../i18n/types";
+import CompareImages from "./CompareImages.astro";
+import VideoShowcase from "./VideoShowcase.astro";
+
+interface Props {
+  dict: Dict;
+  demo: Dict["results"]["demos"][number];
+}
+
+const { dict, demo } = Astro.props;
+---
+
+<div class:list={["result-block", demo.featured && "featured"]}>
+  {demo.featured && <span class="featured-badge">{dict.results.featured}</span>}
+  <h3>{demo.title}</h3>
+  <div class="result-meta">
+    {
+      demo.meta.map((item) => (
+        <span>
+          <strong>{item.label}:</strong> {item.value}
+        </span>
+      ))
+    }
+  </div>
+
+  {demo.video && <VideoShowcase poster={demo.video.poster} captions={demo.video.captions} />}
+
+  <CompareImages
+    beforeImage={demo.beforeImage}
+    afterImage={demo.afterImage}
+    beforeLabel={demo.beforeLabel}
+    afterLabel={demo.afterLabel}
+    beforeAlt={demo.beforeAlt}
+    afterAlt={demo.afterAlt}
+    class={demo.video?.compareMargin ? "compare-spaced" : undefined}
+  />
+
+  <div class="metrics-row">
+    {
+      demo.metrics.map((metric) => (
+        <div class="metric-pill">
+          {metric.label}: <span>{metric.value}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .compare-spaced {
+    margin-top: 1.5rem;
+  }
+</style>

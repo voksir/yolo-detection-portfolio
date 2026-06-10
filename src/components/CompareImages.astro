@@ -1,0 +1,48 @@
+---
+import { asset } from "../utils/assets";
+
+interface Props {
+  beforeImage: string;
+  afterImage: string;
+  beforeLabel: string;
+  afterLabel: string;
+  beforeAlt: string;
+  afterAlt: string;
+  class?: string;
+}
+
+const {
+  beforeImage,
+  afterImage,
+  beforeLabel,
+  afterLabel,
+  beforeAlt,
+  afterAlt,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={["compare", className]}>
+  <div class="compare-item">
+    <img
+      src={asset(`assets/results/${beforeImage}.webp`)}
+      alt={beforeAlt}
+      loading="lazy"
+      decoding="async"
+      width="1280"
+      height="800"
+    />
+    <div class="compare-label">{beforeLabel}</div>
+  </div>
+  <div class="compare-item">
+    <img
+      src={asset(`assets/results/${afterImage}.webp`)}
+      alt={afterAlt}
+      loading="lazy"
+      decoding="async"
+      width="1280"
+      height="800"
+    />
+    <div class="compare-label after">{afterLabel}</div>
+  </div>
+</div>

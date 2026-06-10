@@ -1,0 +1,45 @@
+---
+import type { Dict } from "../i18n/types";
+import { sectionHref } from "../utils/paths";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const { hero } = dict;
+---
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1>{hero.title}</h1>
+      <p class="hero-lead">{hero.lead}</p>
+      <div class="hero-actions">
+        <a href={sectionHref(dict.lang, "results")} class="btn btn-primary">{hero.viewResults}</a>
+        <a
+          href="https://github.com/voksir/image-detection"
+          class="btn btn-secondary"
+          target="_blank"
+          rel="noopener"
+        >
+          {hero.sourceRepo}
+        </a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>{hero.statsTitle}</h3>
+      <div class="stat-grid">
+        {
+          hero.stats.map((stat) => (
+            <div class="stat">
+              <div class="stat-value">{stat.value}</div>
+              <div class="stat-label">{stat.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>

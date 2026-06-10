@@ -2,11 +2,16 @@
 Thumbs.db
 *.avi
 *.mov
-# Vidéos lourdes ignorées — sauf previews portfolio
+# Heavy videos ignored — except portfolio previews in public/
 *.mp4
-!assets/videos/*_preview.mp4
+!public/assets/videos/*_preview.mp4
 *.pt
 *.pth
 __pycache__/
 .env
 PORTFOLIO_PROMPT_TEMPLATE.md
+
+# Astro
+node_modules/
+dist/
+.astro/

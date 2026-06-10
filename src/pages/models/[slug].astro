@@ -1,0 +1,26 @@
+---
+import ModelPage from "../../components/ModelPage.astro";
+import { getAllModelSlugs, getModelPage } from "../../data/model-pages";
+import { getDict } from "../../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return getAllModelSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const dict = getDict("en");
+const page = getModelPage("en", slug!);
+
+if (!page) {
+  return Astro.redirect("/");
+}
+---
+
+<BaseLayout
+  lang="en"
+  title={`${page.title} | Portfolio`}
+  description={page.lead}
+>
+  <ModelPage dict={dict} page={page} />
+</BaseLayout>

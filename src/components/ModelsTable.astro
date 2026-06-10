@@ -1,0 +1,51 @@
+---
+import type { Dict } from "../i18n/types";
+import { modelPath, sectionId } from "../utils/paths";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const { models } = dict;
+---
+
+<section id={sectionId(dict.lang, "models")} style="background: var(--bg-elevated);">
+  <div class="container">
+    <div class="section-header">
+      <h2>{models.title}</h2>
+      <p>{models.lead}</p>
+    </div>
+
+    <table class="model-table">
+      <thead>
+        <tr>
+          <th>{models.columns.model}</th>
+          <th>{models.columns.type}</th>
+          <th>{models.columns.usage}</th>
+          <th>{models.columns.result}</th>
+          <th>{models.columns.details}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          models.rows.map((row) => (
+            <tr>
+              <td>
+                <strong>{row.name}</strong>
+              </td>
+              <td>
+                <span class:list={["badge", row.badgeClass]}>{row.badge}</span>
+              </td>
+              <td>{row.usage}</td>
+              <td>{row.result}</td>
+              <td>
+                <a href={modelPath(dict.lang, row.slug)}>{models.view}</a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

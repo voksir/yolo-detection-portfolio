@@ -1,0 +1,32 @@
+---
+import type { Dict } from "../i18n/types";
+import { sectionId } from "../utils/paths";
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const { about } = dict;
+---
+
+<section id={sectionId(dict.lang, "about")}>
+  <div class="container">
+    <div class="section-header">
+      <h2>{about.title}</h2>
+      <p set:html={about.lead} />
+    </div>
+    <div class="card-grid">
+      {
+        about.cards.map((card) => (
+          <article class="card">
+            <div class="card-icon">{card.icon}</div>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+            <span class="card-tag">{card.tag}</span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

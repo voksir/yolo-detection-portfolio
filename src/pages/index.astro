@@ -1,0 +1,27 @@
+---
+import FeatureCards from "../components/FeatureCards.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ModelsTable from "../components/ModelsTable.astro";
+import Nav from "../components/Nav.astro";
+import Pipeline from "../components/Pipeline.astro";
+import ResultsSection from "../components/ResultsSection.astro";
+import TechStack from "../components/TechStack.astro";
+import { getDict } from "../i18n";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const dict = getDict("en");
+---
+
+<BaseLayout lang="en" title={dict.siteTitle} description={dict.metaDescription}>
+  <Nav dict={dict} />
+  <main id="main-content">
+    <Hero dict={dict} />
+    <FeatureCards dict={dict} />
+    <Pipeline dict={dict} />
+    <ResultsSection dict={dict} />
+    <ModelsTable dict={dict} />
+    <TechStack dict={dict} />
+  </main>
+  <Footer dict={dict} />
+</BaseLayout>
