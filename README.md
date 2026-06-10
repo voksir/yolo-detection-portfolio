@@ -15,49 +15,6 @@ Visual portfolio of a **Computer Vision** project built with **YOLOv8** (Ultraly
 | **English (default)** | https://voksir.github.io/yolo-detection-portfolio/ |
 | **French** | https://voksir.github.io/yolo-detection-portfolio/fr/ |
 
-Deployed automatically via **GitHub Actions** on every push to `main`.
-
-### GitHub Pages setup
-
-In repository **Settings → Pages**, set **Source** to **GitHub Actions** (not “Deploy from branch”).
-
----
-
-## Local development
-
-Requirements: Node.js 20+ and npm.
-
-```bash
-npm install
-npm run dev      # http://localhost:4321/yolo-detection-portfolio/
-npm run build    # output in dist/
-npm run preview  # preview production build
-```
-
----
-
-## Project structure
-
-```
-yolo-detection-portfolio/
-├── .github/workflows/deploy.yml
-├── public/
-│   └── assets/
-│       ├── results/          # WebP screenshots
-│       └── videos/           # Compressed video preview
-├── src/
-│   ├── components/           # Astro UI components
-│   ├── data/model-pages.ts   # Model detail page content
-│   ├── i18n/                 # EN / FR translations
-│   ├── layouts/
-│   ├── pages/                # Routes (EN + FR + model pages)
-│   └── styles/style.css
-├── astro.config.mjs
-└── package.json
-```
-
-Content is centralized in `src/i18n/` — one edit updates both languages for shared data (images, metrics).
-
 ---
 
 ## Content
