@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOLOv8n — Détection | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand">YOLO <span>Portfolio</span></a>
+      <div class="lang-switch" aria-label="Langue">
+        <a href="../../models/yolov8n-detection.html">EN</a>
+        <span class="sep">|</span>
+        <a href="yolov8n-detection.html" class="active" aria-current="page">FR</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container page-hero">
+    <a href="../index.html#modeles" class="back-link">← Retour aux modèles</a>
+    <span class="eyebrow">Modèle de détection</span>
+    <h1>YOLOv8n — Détection d'objets</h1>
+    <p class="hero-lead">Modèle nano pré-entraîné sur le dataset COCO (80 classes). Utilisé pour la détection sur image et vidéo.</p>
+
+    <div class="content-prose">
+      <h2>Caractéristiques</h2>
+      <ul>
+        <li><strong>Fichier :</strong> yolov8n.pt (~6 MB)</li>
+        <li><strong>Architecture :</strong> YOLOv8 nano — optimisé vitesse</li>
+        <li><strong>Dataset d'entraînement :</strong> COCO (80 classes : person, car, dog…)</li>
+        <li><strong>Sortie :</strong> bounding boxes + score de confiance + classe</li>
+        <li><strong>Seuil utilisé :</strong> confidence ≥ 0.5</li>
+      </ul>
+
+      <h2>Résultat sur image</h2>
+      <p>Sur <code>input/test_image.jpg</code> (scène de parking) :</p>
+      <ul>
+        <li>4 voitures détectées (classe <em>car</em>)</li>
+        <li>Confiance maximale : 89.5%</li>
+        <li>Confiance minimale : 73.9%</li>
+      </ul>
+
+      <h2>Résultat sur vidéo</h2>
+      <p>Sur <code>input/test_video_1.mp4</code> → <code>output/test_video_2.mp4</code> :</p>
+      <ul>
+        <li>721 frames traitées en 1920×1080 @ 30 fps (~24 secondes)</li>
+        <li>Vidéo annotée complète générée par <code>detect_video.py</code></li>
+        <li>Aperçu disponible sur la <a href="../index.html#resultats">page résultats</a></li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Scripts associés :</strong> detect_image.py, detect_video.py, detect_tracking.py (base detection)</p>
+      </div>
+
+      <h2>Trade-off vitesse / précision</h2>
+      <p>YOLOv8n est le modèle le plus rapide de la famille. Idéal pour prototypage et CPU. Pour plus de précision, les variantes yolov8s/m/l peuvent être testées en changeant <code>MODEL</code> dans config.py.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 — YOLO Detection Portfolio</span>
+      <a href="../index.html#resultats">Voir les résultats</a>
+    </div>
+  </footer>
+</body>
+</html>

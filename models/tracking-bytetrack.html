@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ByteTrack — Tracking | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand">YOLO <span>Portfolio</span></a>
+      <div class="lang-switch" aria-label="Language">
+        <a href="tracking-bytetrack.html" class="active" aria-current="page">EN</a>
+        <span class="sep">|</span>
+        <a href="../fr/models/tracking-bytetrack.html">FR</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container page-hero">
+    <a href="../index.html#models" class="back-link">← Back to models</a>
+    <span class="eyebrow">Multi-object tracking</span>
+    <h1>ByteTrack — Object Tracking</h1>
+    <p class="hero-lead">Combines YOLOv8 detection with a tracking algorithm to assign a unique ID to each object across frames.</p>
+
+    <div class="content-prose">
+      <h2>How it works</h2>
+      <ul>
+        <li><code>model.predict()</code> → detects without identity (each frame is independent)</li>
+        <li><code>model.track(persist=True)</code> → detects + maintains ID across frames</li>
+      </ul>
+
+      <h2>Configuration used</h2>
+      <ul>
+        <li><strong>Tracker:</strong> bytetrack.yaml (built into Ultralytics)</li>
+        <li><strong>persist:</strong> True (state preserved between calls)</li>
+        <li><strong>Detection model:</strong> yolov8n.pt</li>
+        <li><strong>Script:</strong> detect_tracking.py</li>
+      </ul>
+
+      <h2>Exports</h2>
+      <ul>
+        <li>Annotated video with IDs: <code>output/tracking_video.mp4</code></li>
+        <li>Trajectory CSV: frame, track_id, class, bbox</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Use cases:</strong> counting <em>distinct</em> people in a video, trajectory analysis, intelligent video surveillance.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 — YOLO Detection Portfolio</span>
+      <a href="../index.html#results">View results</a>
+    </div>
+  </footer>
+</body>
+</html>

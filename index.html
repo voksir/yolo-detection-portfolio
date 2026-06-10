@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Computer Vision Portfolio — Object detection, tracking and instance segmentation with YOLOv8 (Ultralytics).">
+  <meta name="author" content="voksir">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="fr" href="fr/index.html">
+  <title>YOLO Detection Portfolio | Computer Vision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">YOLO <span>Portfolio</span></a>
+      <div class="nav-right">
+        <button class="nav-toggle" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#pipeline">Pipeline</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#models">Models</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="https://github.com/voksir/image-detection" target="_blank" rel="noopener">Source code</a></li>
+        </ul>
+        <div class="lang-switch" aria-label="Language">
+          <a href="index.html" class="active" aria-current="page">EN</a>
+          <span class="sep">|</span>
+          <a href="fr/index.html">FR</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Computer Vision · Deep Learning</span>
+        <h1>Object Detection &amp; Tracking with YOLOv8</h1>
+        <p class="hero-lead">
+          A showcase portfolio of a full computer vision pipeline:
+          image and video detection, multi-object tracking (ByteTrack),
+          instance segmentation, and a custom fine-tuning workflow.
+        </p>
+        <div class="hero-actions">
+          <a href="#results" class="btn btn-primary">View results</a>
+          <a href="https://github.com/voksir/image-detection" class="btn btn-secondary" target="_blank" rel="noopener">Source repository</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Test set performance</h3>
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Cars detected (image)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">89%</div>
+            <div class="stat-label">Max confidence (car)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Working scripts</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">80</div>
+            <div class="stat-label">COCO classes (base)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About the project</h2>
+        <p>
+          This portfolio presents the <strong>visual results</strong> of a Python computer vision project.
+          The goal was to master the full workflow — from real-world inference to preparing a custom fine-tuning pipeline.
+        </p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Object detection</h3>
+          <p>Object localization via bounding boxes on images and videos, with JSON/CSV export.</p>
+          <span class="card-tag">Implemented</span>
+        </article>
+        <article class="card">
+          <div class="card-icon">🔗</div>
+          <h3>Multi-object tracking</h3>
+          <p>Persistent object tracking across frames using ByteTrack and unique IDs.</p>
+          <span class="card-tag">Implemented</span>
+        </article>
+        <article class="card">
+          <div class="card-icon">🧩</div>
+          <h3>Instance segmentation</h3>
+          <p>Pixel-level object contours using the YOLOv8-seg model.</p>
+          <span class="card-tag">Implemented</span>
+        </article>
+        <article class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Custom fine-tuning</h3>
+          <p>Training pipeline ready for annotated datasets (transfer learning from COCO).</p>
+          <span class="card-tag">Pipeline ready</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pipeline" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Processing pipeline</h2>
+        <p>Data flow from media input to structured exports.</p>
+      </div>
+      <div class="pipeline">
+        <div class="pipeline-step">📥 Input<br><small>Image / Video</small></div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">🤖 YOLOv8<br><small>Inference</small></div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">🖼️ Annotation<br><small>Bbox / Masks</small></div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">📤 Output<br><small>JPG / MP4 / JSON</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="container">
+      <div class="section-header">
+        <h2>Visual results</h2>
+        <p>Before / after comparisons on project test data. All screenshots come from actual script runs.</p>
+      </div>
+
+      <div class="result-block">
+        <h3>1. Image detection</h3>
+        <div class="result-meta">
+          <span><strong>Script:</strong> detect_image.py</span>
+          <span><strong>Model:</strong> yolov8n.pt</span>
+          <span><strong>Threshold:</strong> conf ≥ 0.5</span>
+        </div>
+        <div class="compare">
+          <div class="compare-item">
+            <img src="assets/results/detection-before.jpg" alt="Original image before detection" loading="lazy">
+            <div class="compare-label">Before — original image</div>
+          </div>
+          <div class="compare-item">
+            <img src="assets/results/detection-after.jpg" alt="Image after YOLO detection" loading="lazy">
+            <div class="compare-label after">After — bounding boxes</div>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-pill">Objects detected: <span>4</span></div>
+          <div class="metric-pill">Class: <span>car</span></div>
+          <div class="metric-pill">Max confidence: <span>89.5%</span></div>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <h3>2. Instance segmentation</h3>
+        <div class="result-meta">
+          <span><strong>Script:</strong> detect_segmentation.py</span>
+          <span><strong>Model:</strong> yolov8n-seg.pt</span>
+        </div>
+        <div class="compare">
+          <div class="compare-item">
+            <img src="assets/results/detection-before.jpg" alt="Original image" loading="lazy">
+            <div class="compare-label">Before — original image</div>
+          </div>
+          <div class="compare-item">
+            <img src="assets/results/segmentation-after.jpg" alt="Segmented image with masks" loading="lazy">
+            <div class="compare-label after">After — masks &amp; contours</div>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-pill">Objects segmented: <span>4</span></div>
+          <div class="metric-pill">Max contour points: <span>234</span></div>
+          <div class="metric-pill">Type: <span>Instance segmentation</span></div>
+        </div>
+      </div>
+
+      <div class="result-block featured">
+        <span class="featured-badge">Featured demo</span>
+        <h3>3. Full video detection — test_video_1 → test_video_2</h3>
+        <div class="result-meta">
+          <span><strong>Input:</strong> input/test_video_1.mp4</span>
+          <span><strong>Output:</strong> output/test_video_2.mp4</span>
+          <span><strong>Script:</strong> detect_video.py</span>
+          <span><strong>Model:</strong> yolov8n.pt</span>
+        </div>
+
+        <div class="video-showcase">
+          <video controls playsinline preload="metadata" poster="assets/results/test_video_2-after.jpg">
+            <source src="assets/videos/test_video_2_preview.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+          <div class="video-caption">
+            <span><strong>Preview:</strong> first 8 seconds of the annotated video</span>
+            <span><strong>Resolution:</strong> 1920×1080</span>
+            <span><strong>Full duration:</strong> ~24 s (721 frames @ 30 fps)</span>
+          </div>
+        </div>
+
+        <div class="compare" style="margin-top: 1.5rem;">
+          <div class="compare-item">
+            <img src="assets/results/test_video_1-before.jpg" alt="Original frame from test_video_1" loading="lazy">
+            <div class="compare-label">Before — test_video_1.mp4 (center frame)</div>
+          </div>
+          <div class="compare-item">
+            <img src="assets/results/test_video_2-after.jpg" alt="Annotated frame from test_video_2" loading="lazy">
+            <div class="compare-label after">After — test_video_2.mp4 (YOLO detection)</div>
+          </div>
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric-pill">Frames processed: <span>721</span></div>
+          <div class="metric-pill">Resolution: <span>1920×1080</span></div>
+          <div class="metric-pill">Source FPS: <span>30</span></div>
+          <div class="metric-pill">Pipeline: <span>frame-by-frame</span></div>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <h3>4. Other example — parking lot (extracted frame)</h3>
+        <div class="result-meta">
+          <span><strong>Input:</strong> input/test_video.mp4</span>
+          <span><strong>Script:</strong> detect_video.py</span>
+        </div>
+        <div class="compare">
+          <div class="compare-item">
+            <img src="assets/results/video-before.jpg" alt="Original parking lot video frame" loading="lazy">
+            <div class="compare-label">Before — frame #30</div>
+          </div>
+          <div class="compare-item">
+            <img src="assets/results/video-frame-2.jpg" alt="Annotated parking lot frame" loading="lazy">
+            <div class="compare-label after">After — bounding boxes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <h3>5. Multi-object tracking</h3>
+        <div class="result-meta">
+          <span><strong>Script:</strong> detect_tracking.py</span>
+          <span><strong>Tracker:</strong> ByteTrack</span>
+          <span><strong>Persistent IDs</strong> across frames</span>
+        </div>
+        <div class="compare">
+          <div class="compare-item">
+            <img src="assets/results/video-before.jpg" alt="Frame before tracking" loading="lazy">
+            <div class="compare-label">Before — no identity</div>
+          </div>
+          <div class="compare-item">
+            <img src="assets/results/tracking-after.jpg" alt="Frame with tracking IDs" loading="lazy">
+            <div class="compare-label after">After — ID:1, ID:2…</div>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-pill">Tracker: <span>ByteTrack</span></div>
+          <div class="metric-pill">Persist: <span>True</span></div>
+          <div class="metric-pill">Export: <span>CSV trajectories</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="models" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Models used</h2>
+        <p>Overview of models tested and trained as part of this project.</p>
+      </div>
+
+      <table class="model-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Usage</th>
+            <th>Result</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>yolov8n.pt</strong></td>
+            <td><span class="badge badge-blue">Detection</span></td>
+            <td>Image &amp; video — 80 COCO classes</td>
+            <td>4 cars detected (test)</td>
+            <td><a href="models/yolov8n-detection.html">View →</a></td>
+          </tr>
+          <tr>
+            <td><strong>yolov8n-seg.pt</strong></td>
+            <td><span class="badge badge-cyan">Segmentation</span></td>
+            <td>Pixel-level instance masks</td>
+            <td>4 objects segmented</td>
+            <td><a href="models/yolov8n-segmentation.html">View →</a></td>
+          </tr>
+          <tr>
+            <td><strong>ByteTrack</strong></td>
+            <td><span class="badge badge-blue">Tracking</span></td>
+            <td>Multi-object video tracking</td>
+            <td>Persistent IDs</td>
+            <td><a href="models/tracking-bytetrack.html">View →</a></td>
+          </tr>
+          <tr>
+            <td><strong>yolo_custom</strong></td>
+            <td><span class="badge badge-gray">Fine-tuning</span></td>
+            <td>Custom classes (custom dataset)</td>
+            <td>Pipeline ready</td>
+            <td><a href="models/custom-training.html">View →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tech stack</h2>
+        <p>Technologies and skills demonstrated by this project.</p>
+      </div>
+      <div class="tech-list">
+        <span class="tech-pill">Python 3.14</span>
+        <span class="tech-pill">Ultralytics YOLOv8</span>
+        <span class="tech-pill">PyTorch</span>
+        <span class="tech-pill">OpenCV</span>
+        <span class="tech-pill">ByteTrack</span>
+        <span class="tech-pill">Computer Vision</span>
+        <span class="tech-pill">Transfer Learning</span>
+        <span class="tech-pill">JSON / CSV Export</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2025 — Computer Vision Portfolio · (Gonto Jean Claude GBAH)</span>
+      <span>
+        <a href="https://github.com/voksir/image-detection" target="_blank" rel="noopener">Source code</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

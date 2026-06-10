@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOLOv8n-seg — Segmentation | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand">YOLO <span>Portfolio</span></a>
+      <div class="lang-switch" aria-label="Language">
+        <a href="yolov8n-segmentation.html" class="active" aria-current="page">EN</a>
+        <span class="sep">|</span>
+        <a href="../fr/models/yolov8n-segmentation.html">FR</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container page-hero">
+    <a href="../index.html#models" class="back-link">← Back to models</a>
+    <span class="eyebrow">Segmentation model</span>
+    <h1>YOLOv8n-seg — Instance Segmentation</h1>
+    <p class="hero-lead">Beyond bounding boxes, this model produces precise masks that follow the actual contour of each object.</p>
+
+    <div class="content-prose">
+      <h2>Difference from standard detection</h2>
+      <ul>
+        <li><strong>Detection:</strong> enclosing rectangle (bbox)</li>
+        <li><strong>Segmentation:</strong> binary mask + polygon contour (masks.xy)</li>
+      </ul>
+
+      <h2>Specifications</h2>
+      <ul>
+        <li><strong>File:</strong> yolov8n-seg.pt (~6.7 MB)</li>
+        <li><strong>Outputs:</strong> bbox + masks (N, H, W) + polygons</li>
+        <li><strong>Script:</strong> detect_segmentation.py</li>
+      </ul>
+
+      <h2>Test results</h2>
+      <p>On the same parking lot image:</p>
+      <ul>
+        <li>4 cars segmented</li>
+        <li>Contours from 33 to 234 points depending on shape complexity</li>
+        <li>Confidence: 68% to 90%</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Use cases:</strong> occupied area measurement, precise cropping, shape analysis — where a simple bbox is not enough.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 — YOLO Detection Portfolio</span>
+      <a href="../index.html#results">View results</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+*.avi
+*.mov
+# Vidéos lourdes ignorées — sauf previews portfolio
+*.mp4
+!assets/videos/*_preview.mp4
+*.pt
+*.pth
+__pycache__/
+.env
+PORTFOLIO_PROMPT_TEMPLATE.md
